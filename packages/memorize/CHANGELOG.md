@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 1.0.0
+
+### Major Changes
+
+- 5c908a0: bump version
+
 ## 0.1.6
 
 ### Patch Changes
