@@ -6,7 +6,10 @@
   "module": "dist/index.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/AnxinYang/axync/tree/main/packages/memorize",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnxinYang/axync.git#main"
+  },
   "homepage": "https://github.com/AnxinYang/axync/tree/main/packages/memorize",
   "files": [
     "dist/**/*",
