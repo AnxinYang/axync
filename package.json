@@ -10,7 +10,6 @@
     "clean": "npm run clean --workspaces",
     "test": "npm run test --workspaces",
     "test:coverage": "npm run test:coverage --workspaces",
-    "sss": "npm run clean && npm run build",
     "release": "npm run clean && npm run build && changeset publish"
   },
   "workspaces": [
