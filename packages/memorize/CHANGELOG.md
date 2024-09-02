@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 1.0.1
+
+### Patch Changes
+
+- 1413725: add directory for package.json files in packages/
+
 ## 1.0.0
 
 ### Major Changes
