@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.0.5
+
+### Patch Changes
+
+- 1413725: add directory for package.json files in packages/
+
 ## 1.0.4
 
 ### Patch Changes
