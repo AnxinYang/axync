@@ -1,11 +1,32 @@
 {
   "name": "@axync/memorize",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/AnxinYang/axync/tree/main/packages/memorize",
+  "homepage": "https://github.com/AnxinYang/axync/tree/main/packages/memorize",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "play": "tsx ./src/play.ts"
   },
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "MIT",
+  "description": "![Test](https://github.com/AnxinYang/axync/actions/workflows/test.yml/badge.svg)",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {}
 }
