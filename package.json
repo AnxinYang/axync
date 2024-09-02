@@ -6,9 +6,11 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "build":"npm run build --workspaces",
+    "build": "npm run build --workspaces",
+    "clean": "npm run clean --workspaces",
     "test": "npm run test --workspaces",
-    "test:coverage": "npm run test:coverage --workspaces"
+    "test:coverage": "npm run test:coverage --workspaces",
+    "release": "npm run clean && npm run build && changeset publish"
   },
   "workspaces": [
     "packages/*"
