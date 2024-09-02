@@ -1,0 +1,14 @@
+{
+  "name": "@axync/root",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Anxin Yang <anxinyang114@gmail.com>",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
