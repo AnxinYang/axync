@@ -20,10 +20,6 @@
     "@changesets/cli": "^2.27.7",
     "@types/node": "^22.5.2",
     "eslint": "^9.9.1",
-    "prettier": "^3.3.3",
-    "tsx": "^4.19.0",
-    "typescript": "^5.5.4",
-    "vitest": "^2.0.5",
-    "@vitest/coverage-istanbul": "^2.0.5"
+    "prettier": "^3.3.3"
   }
 }
