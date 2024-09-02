@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.0.3
+
+### Patch Changes
+
+- 1944510: update package.json repository field
+
 ## 1.0.2
 
 ### Patch Changes
