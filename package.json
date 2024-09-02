@@ -6,7 +6,9 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build":"npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "test:coverage": "npm run test:coverage --workspaces"
   },
   "workspaces": [
     "packages/*"
