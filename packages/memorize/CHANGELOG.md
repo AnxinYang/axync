@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 0.1.6
+
+### Patch Changes
+
+- 1944510: update package.json repository field
+
 ## 0.1.5
 
 ### Patch Changes
