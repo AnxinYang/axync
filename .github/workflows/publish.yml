@@ -22,11 +22,6 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package-path:
-          - packages/memorize
-          - packages/random
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -39,10 +34,6 @@ jobs:
 
       - name: Install
         run: npm install
-
-      # - name: Navigate to package directory
-      #   working-directory: ${{ matrix.package-path }}
-      #   run: npm ci
 
       - name: Publish
         id: changesets
