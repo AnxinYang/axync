@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.0.6
+
+### Patch Changes
+
+- f84ec1d: bump version
+
 ## 1.0.5
 
 ### Patch Changes
