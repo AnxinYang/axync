@@ -36,13 +36,13 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-          
-      - name: Install
-        run: npm ci
 
-      - name: Navigate to package directory
-        working-directory: ${{ matrix.package-path }}
-        run: npm ci
+      - name: Install
+        run: npm install
+
+      # - name: Navigate to package directory
+      #   working-directory: ${{ matrix.package-path }}
+      #   run: npm ci
 
       - name: Publish
         id: changesets
