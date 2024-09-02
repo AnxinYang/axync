@@ -1,0 +1,5 @@
+---
+"@axync/memorize": patch
+---
+
+init

@@ -1,0 +1,1 @@
+export {memorize as withMemorized} from "./internal/memorize.js";

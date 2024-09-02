@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
+    "typeRoots": [],
+    "types": [],
+    "baseUrl": "./packages",
+    "paths": {
+      "@aytools/*": ["./*/src"]
+    },
+    "composite": true,
+    "isolatedModules": true,
+  },
+  "exclude": ["node_modules", "dist", "coverage","**/play.ts"]
+}
