@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.0.11
+
+### Patch Changes
+
+- d36227e: Fix this binding of getRandomeString
+
 ## 1.0.10
 
 ### Patch Changes
