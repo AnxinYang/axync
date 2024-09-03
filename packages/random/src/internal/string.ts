@@ -46,8 +46,10 @@ export class RandomStringGenerator {
   }
 }
 
+const randomStringGenerator = new RandomStringGenerator();
+
 /**
  * Generates a random string of the specified length.
  * It is the {@link RandomStringGenerator.generate} method from the {@link RandomStringGenerator} with default config.
  */
-export const getRandomString = new RandomStringGenerator().generate;
+export const getRandomString = randomStringGenerator.generate.bind(randomStringGenerator);

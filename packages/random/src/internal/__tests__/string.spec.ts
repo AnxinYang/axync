@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest";
-import { RandomStringGenerator } from '../string.js';
+import { RandomStringGenerator, getRandomString } from '../string.js';
 
 describe('RandomStringGenerator', () => {
   describe('generate', () => {
@@ -41,5 +41,14 @@ describe('RandomStringGenerator', () => {
       const result = generator.generate(length);
       expect(result).toMatch(/^pre-[abc]{10}-suf$/);
     });
+  });
+});
+
+
+describe('getRandomString', () => {
+  it('should be an instance of RandomStringGenerator', async () => {
+    const length = 10;
+    const result = getRandomString(length);
+    expect(result.length).toBe(length);
   });
 });
