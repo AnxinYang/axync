@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 1.0.4
+
+### Patch Changes
+
+- 21064af: adding keywords
+
 ## 1.0.3
 
 ### Patch Changes
