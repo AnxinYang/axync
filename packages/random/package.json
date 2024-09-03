@@ -37,5 +37,11 @@
     "typescript": "^5.5.4",
     "vitest": "^2.0.5",
     "@vitest/coverage-istanbul": "^2.0.5"
-  }
+  },
+  "keywords": [
+    "random",
+    "math",
+    "number",
+    "string"
+  ]
 }
