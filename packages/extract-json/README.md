@@ -4,7 +4,7 @@
 
 ## Overview
 
-`@axync/extractJson` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with large or malformed JSON data where you need to extract valid JSON objects or arrays from a larger text.
+`@axync/extract-json` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with large or malformed JSON data where you need to extract valid JSON objects or arrays from a larger text.
 
 > This package only extracts Objects and Arrays from string.
 
@@ -13,7 +13,7 @@
 You can install the package using npm:
 
 ```bash
-npm install @axync/extractJson
+npm install @axync/extract-json
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ The primary function provided by this package is `extractJson`, which allows you
 ### Example
 
 ```typescript
-import { extractJson } from '@axync/extractJson';
+import { extractJson } from '@axync/extract-json';
 
 const rawString = `
   Here is some text before a JSON object: {"key": "value"} 
