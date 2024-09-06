@@ -1,5 +1,5 @@
 import { describe, it, expect} from "vitest";
-import { RandomStringGenerator, getRandomString } from '../string.js';
+import { RandomStringGenerator, defaultStringLength, getRandomString } from '../string.js';
 
 describe('RandomStringGenerator', () => {
   describe('generate', () => {
@@ -47,8 +47,7 @@ describe('RandomStringGenerator', () => {
 
 describe('getRandomString', () => {
   it('should be an instance of RandomStringGenerator', async () => {
-    const length = 10;
-    const result = getRandomString(length);
-    expect(result.length).toBe(length);
+    const result = getRandomString();
+    expect(result.length).toBe(defaultStringLength);
   });
 });
