@@ -15,6 +15,7 @@ export interface RandomStringGeneratorConfig {
 
 const defaultCharset =
   "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+export const defaultStringLength = 8;
 
 export class RandomStringGenerator {
   private charset: string;
@@ -28,13 +29,13 @@ export class RandomStringGenerator {
   }
 
   /**
-   * Generates a random string of the specified length.
+   * Generates a random string of the specified length. Default length is 8.
    *
    * @param length - The length of the string to generate.
    *
    * @returns The generated string.
    **/
-  public generate(length: number): string {
+  public generate(length: number = defaultStringLength): string {
     let result = "";
     const charactersLength = this.charset.length;
     for (let i = 0; i < length; i++) {
@@ -49,7 +50,7 @@ export class RandomStringGenerator {
 const randomStringGenerator = new RandomStringGenerator();
 
 /**
- * Generates a random string of the specified length.
+ * Generates a random string of the specified length. Default length is 8.
  * It is the {@link RandomStringGenerator.generate} method from the {@link RandomStringGenerator} with default config.
  */
 export const getRandomString = randomStringGenerator.generate.bind(randomStringGenerator);
