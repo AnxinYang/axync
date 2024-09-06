@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.1.0
+
+### Minor Changes
+
+- 03add42: Add a default value for random string length.
+
 ## 1.0.11
 
 ### Patch Changes
