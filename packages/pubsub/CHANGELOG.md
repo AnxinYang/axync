@@ -1,5 +1,15 @@
 # @axync/pubsub
 
+## 2.0.0
+
+### Major Changes
+
+- aaeaf1f: Release
+
+### Patch Changes
+
+- 76f0410: Add readme
+
 ## 1.0.0
 
 ### Major Changes
