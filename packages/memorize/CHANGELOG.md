@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 1.0.5
+
+### Patch Changes
+
+- 46474b0: Update code for eslint
+
 ## 1.0.4
 
 ### Patch Changes

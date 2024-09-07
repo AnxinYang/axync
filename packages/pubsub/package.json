@@ -1,6 +1,6 @@
 {
   "name": "@axync/pubsub",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -45,6 +45,6 @@
     "publish/subscribe"
   ],
   "dependencies": {
-    "@axync/random": "^1.1.0"
+    "@axync/random": "^1.1.1"
   }
 }

@@ -1,5 +1,11 @@
 # @axync/extract-json
 
+## 1.0.2
+
+### Patch Changes
+
+- 46474b0: Update code for eslint
+
 ## 1.0.1
 
 ### Patch Changes
