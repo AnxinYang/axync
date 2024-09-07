@@ -31,6 +31,8 @@ interface MemorizedResult<T> {
 /** 
  * Type representing a generic input function.
  */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type InputFunctionType = (...args: any[]) => any;
 
 /**

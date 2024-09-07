@@ -2,10 +2,12 @@ export class JsonExtractor {
   /**
    * Tries to parse the raw string as JSON.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private tryDirectParse(rawString: string): any {
     try {
       return JSON.parse(rawString);
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
       return;
     }
   }
@@ -28,6 +30,7 @@ export class JsonExtractor {
   /**
    * Tries to parse the raw string as JSON.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async tryParse(rawString: string, startIndex: number): Promise<any> {
     let bracketCount = 1;
     let endIndex = startIndex + 1;
@@ -56,12 +59,14 @@ export class JsonExtractor {
    * When providing a limit, the extraction will only try to extract
    * up to the specified number of objects/arrays.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async extract(rawString: string, limit = Infinity): Promise<any[]> {
     if (!rawString) {
       return [];
     }
 
     const startIndexes = this.findAllStartIndexes(rawString);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const results: any[] = [];
 
     for (const startIndex of startIndexes) {

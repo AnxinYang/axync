@@ -8,6 +8,7 @@
   "scripts": {
     "build": "npm run build --workspaces",
     "clean": "npm run clean --workspaces",
+    "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",
     "test:coverage": "npm run test:coverage --workspaces",
     "release": "npm run clean && npm run build && changeset publish"
@@ -17,6 +18,7 @@
   ],
   "devDependencies": {
     "@changesets/cli": "^2.27.7",
+    "@eslint/compat": "^1.1.1",
     "@eslint/js": "^9.10.0",
     "@types/node": "^22.5.2",
     "eslint": "^9.10.0",

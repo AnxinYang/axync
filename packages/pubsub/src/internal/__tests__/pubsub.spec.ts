@@ -60,7 +60,9 @@ describe("PubSub", () => {
   it("should not publish if no handlers are subscribed", async () => {
     pubSub.publish("nonexistent-topic", { message: "no-subscribers" });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (pubSub as any).registerExecution = vi.fn();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((pubSub as any).registerExecution).not.toHaveBeenCalled();
   });
 

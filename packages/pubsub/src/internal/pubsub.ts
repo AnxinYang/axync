@@ -2,12 +2,14 @@ import { getRandomString } from "@axync/random";
 
 export interface PubSubDependencies {
   getTopicToken?: () => string;
-  onPublishError?: (error: unknown, data: unknown) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onPublishError?: (error: any, data: any) => void;
   maxBatchTime?: number;
 }
 
 interface TopicHandlers {
-  [key: string]: (...args: any[]) => any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: (...args: any[]) => void;
 }
 
 interface TopicRecords {
@@ -17,7 +19,8 @@ interface TopicRecords {
 export class PubSub {
   private topics: TopicRecords;
   private getTopicToken: () => string;
-  private onPublishError: (error: unknown, data: unknown) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private onPublishError: (error: any, data: any) => void;
   private executionQueue: Record<string, (() => Promise<void>)[]> = {};
   private executionTimer: NodeJS.Timeout | null = null;
   private batchStartTime: number | null = null;
@@ -35,7 +38,8 @@ export class PubSub {
     this.maxBatchTime = maxBatchTime ?? 200;
   }
 
-  subscribe(topic: string, handler: (...args: any[]) => any) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  subscribe(topic: string, handler: (...args: any[]) => void) {
     const token = this.getTopicToken();
     if (!this.topics[topic]) {
       this.topics[topic] = {};
@@ -65,7 +69,7 @@ export class PubSub {
     this.topics = {};
   }
 
-  publish(topic: string, data: any) {
+  publish(topic: string, data: unknown) {
     // If there are no handlers for the topic, return early.
     if (!this.topics[topic] || Object.keys(this.topics[topic]).length === 0) {
       return;
@@ -94,7 +98,7 @@ export class PubSub {
       return;
     }
 
-    this.clearExecutionTimer()
+    this.clearExecutionTimer();
     this.registerExecution();
   }
 
