@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.1.1
+
+### Patch Changes
+
+- 46474b0: Update code for eslint
+
 ## 1.1.0
 
 ### Minor Changes
