@@ -1,0 +1,5 @@
+---
+"@axync/pubsub": major
+---
+
+Release
