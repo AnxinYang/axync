@@ -1,0 +1,49 @@
+{
+  "name": "@axync/pubsub",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnxinYang/axync.git#main",
+    "directory": "packages/pubsub"
+  },
+  "homepage": "https://github.com/AnxinYang/axync/tree/main/packages/pubsub",
+  "files": [
+    "dist/**/*",
+    "src/**/*",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "play": "tsx ./src/play.ts"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "A publish/subscribe library for JavaScript and TypeScript.",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@vitest/coverage-istanbul": "^2.0.5",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5"
+  },
+  "keywords": [
+    "pub/sub",
+    "pubsub",
+    "publish/subscribe"
+  ],
+  "dependencies": {
+    "@axync/random": "^1.1.0"
+  }
+}
