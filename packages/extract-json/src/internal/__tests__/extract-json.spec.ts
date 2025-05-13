@@ -39,6 +39,42 @@ describe('JsonExtractor', () => {
       const result = await (jsonExtractor as any).tryParse(rawString, 2);
       expect(result).toEqual([]);
     });
+
+    it('should yield control to the event loop during execution', async () => {
+      const rawString = '{"key1": "value1"} {"key2": "value2"} {"key3": "value3"}';
+      const executionOrder: string[] = [];
+
+      // Mock a task to run in the event loop
+      const mockTask = async () => {
+        executionOrder.push('mockTask');
+      };
+
+      // Wrap the tryParse call to track execution order
+      const tryParsePromise = (async () => {
+        executionOrder.push('tryParse-start');
+        const result = await (jsonExtractor as any).tryParse(rawString, Infinity);
+        executionOrder.push('tryParse-end');
+        return result;
+      })();
+
+      // Schedule the mock task to run in the event loop
+      await Promise.resolve().then(mockTask);
+
+      // Wait for tryParse to complete
+      const result = await tryParsePromise;
+
+      // Verify the execution order
+      expect(result).toEqual([
+        { key1: 'value1' },
+        { key2: 'value2' },
+        { key3: 'value3' },
+      ]);
+      expect(executionOrder).toEqual([
+        'tryParse-start',
+        'mockTask', // Ensure the mock task ran before tryParse completed
+        'tryParse-end',
+      ]);
+    });
   });
 
   describe('extract', () => {

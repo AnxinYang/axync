@@ -58,6 +58,9 @@ export class JsonExtractor {
         // If parsing fails, move past the current start index and continue
         remainingString = remainingString.slice(startIndex + 1);
       }
+
+      // Yield control back to the event loop to make it truly async
+      await Promise.resolve();
     }
 
     return results;
