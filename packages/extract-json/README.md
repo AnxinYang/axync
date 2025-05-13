@@ -135,6 +135,22 @@ console.log(jsonObjects);
 
 4. **Streaming**: The `extractStream` method processes the string incrementally and yields JSON objects as they are parsed.
 
+## Performance
+
+Performance tests were conducted to evaluate the efficiency of the three primary functions provided by `@axync/extract-json`. Below are the results for processing 100,000 JSON objects and an array:
+
+- **extractJson**: Processed in approximately `86.25ms`.
+- **extractJsonSync**: Processed in approximately `78.93ms`.
+- **extractStream**: Processed in approximately `108.98ms`.
+
+### Test Environment
+- **CPU**: 13th Gen Intel(R) Core(TM) i9-13900K, 24 cores, 3.0 GHz
+
+### Observations
+- `extractJsonSync` is the fastest for synchronous operations but blocks the event loop.
+- `extractJson` provides asynchronous processing, making it suitable for non-blocking operations.
+- `extractStream` is ideal for streaming large data incrementally.
+
 ## Limitations
 
 - This package only extracts JSON objects (`{}`) and arrays (`[]`). It does not extract other JSON data types like strings, numbers, or booleans.
