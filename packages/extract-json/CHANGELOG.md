@@ -1,5 +1,11 @@
 # @axync/extract-json
 
+## 1.1.1
+
+### Patch Changes
+
+- db7f63d: Adding performence tests
+
 ## 1.1.0
 
 ### Minor Changes
