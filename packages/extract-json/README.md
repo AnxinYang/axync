@@ -4,7 +4,7 @@
 
 ## Overview
 
-`@axync/extract-json` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with large or malformed JSON data where you need to extract valid JSON objects or arrays from a larger text.
+`@axync/extract-json` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with string, such like LLM responses, where you need to extract valid JSON objects or arrays from a larger text.
 
 > This package only extracts Objects and Arrays from string.
 
@@ -49,7 +49,7 @@ console.log(jsonObjects);
 
 ## API
 
-### `extractJson(rawString: string, limit?: number): Promise<any[]>`
+### `extractJson(rawString: string, limit?: number): Promise<T[]>`
 
 - **rawString**: The string containing potential JSON objects or arrays.
 - **limit**: (Optional) The maximum number of JSON objects/arrays to extract. Defaults to `Infinity`.
