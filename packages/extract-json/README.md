@@ -1,12 +1,11 @@
 # @axync/extract-json
 ![Test](https://github.com/AnxinYang/axync/actions/workflows/test.yml/badge.svg)
 
-
 ## Overview
 
-`@axync/extract-json` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with string, such like LLM responses, where you need to extract valid JSON objects or arrays from a larger text.
+`@axync/extract-json` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with strings, such as LLM responses, where you need to extract valid JSON objects or arrays from a larger text.
 
-> This package only extracts Objects and Arrays from string.
+> This package only extracts Objects and Arrays from strings.
 
 ## Installation
 
@@ -18,9 +17,9 @@ npm install @axync/extract-json
 
 ## Usage
 
-The primary function provided by this package is `extractJson`, which allows you to extract JSON objects and arrays from a raw string. 
+The primary functions provided by this package are `extractJson` (asynchronous) and `extractJsonSync` (synchronous), which allow you to extract JSON objects and arrays from a raw string.
 
-### Example
+### Example (Async)
 
 ```typescript
 import { extractJson } from '@axync/extract-json';
@@ -36,12 +35,37 @@ console.log(jsonObjects);
 // Output: [{ "key": "value" }, { "anotherKey": 123 }, [1, 2, 3]]
 ```
 
+### Example (Sync)
+
+```typescript
+import { extractJsonSync } from '@axync/extract-json';
+
+const rawString = `
+  Here is some text before a JSON object: {"key": "value"} 
+  and another one: {"anotherKey": 123} and here is an array: [1, 2, 3]
+`;
+
+const jsonObjects = extractJsonSync(rawString);
+
+console.log(jsonObjects);
+// Output: [{ "key": "value" }, { "anotherKey": 123 }, [1, 2, 3]]
+```
+
 ### Extract with Limit
 
 You can also specify a limit to control the number of JSON objects or arrays extracted:
 
+#### Async
 ```typescript
 const jsonObjects = await extractJson(rawString, 2);
+
+console.log(jsonObjects);
+// Output: [{ "key": "value" }, { "anotherKey": 123 }]
+```
+
+#### Sync
+```typescript
+const jsonObjects = extractJsonSync(rawString, 2);
 
 console.log(jsonObjects);
 // Output: [{ "key": "value" }, { "anotherKey": 123 }]
@@ -55,6 +79,15 @@ console.log(jsonObjects);
 - **limit**: (Optional) The maximum number of JSON objects/arrays to extract. Defaults to `Infinity`.
 
 **Returns**: A `Promise` that resolves to an array of extracted JSON objects and arrays.
+
+---
+
+### `extractJsonSync(rawString: string, limit?: number): T[]`
+
+- **rawString**: The string containing potential JSON objects or arrays.
+- **limit**: (Optional) The maximum number of JSON objects/arrays to extract. Defaults to `Infinity`.
+
+**Returns**: An array of extracted JSON objects and arrays.
 
 ## How It Works
 
@@ -72,4 +105,4 @@ console.log(jsonObjects);
 
 ## License
 
-This project is licensed under the MIT License. 
+This project is licensed under the MIT License.
