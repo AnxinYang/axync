@@ -3,9 +3,17 @@
 
 ## Overview
 
-`@axync/extract-json` is a utility for extracting JSON objects and arrays from a raw string. This package is particularly useful when dealing with strings, such as LLM responses, where you need to extract valid JSON objects or arrays from a larger text.
+`@axync/extract-json` is a powerful utility designed to extract valid JSON objects and arrays from raw text. Whether you're working with large text data, processing logs, or parsing responses from Large Language Models (LLMs), this package helps you efficiently extract structured JSON data from unstructured strings.
 
-> This package only extracts Objects and Arrays from strings.
+Key features include:
+- **Asynchronous and Streaming Support**: Process large strings incrementally without blocking the event loop.
+- **Flexible JSON Extraction**: Extract multiple JSON objects or arrays from mixed or noisy text.
+- **Real-Time Data Processing**: Ideal for real-time applications like log parsing or API response handling.
+- **Error Resilience**: Skips invalid JSON gracefully while continuing to parse valid data.
+
+> Note: This package focuses on extracting JSON objects (`{}`) and arrays (`[]`) only. Other JSON types like strings, numbers, or booleans are not supported.
+
+With `@axync/extract-json`, you can seamlessly integrate JSON extraction into your workflows, making it an essential tool for developers working with unstructured text or LLM outputs.
 
 ## Installation
 
@@ -51,6 +59,26 @@ console.log(jsonObjects);
 // Output: [{ "key": "value" }, { "anotherKey": 123 }, [1, 2, 3]]
 ```
 
+### Example (Async Streaming)
+
+The `extractStream` function allows you to process JSON objects incrementally, which is useful for large strings or real-time data processing.
+
+```typescript
+import { extractStream } from '@axync/extract-json';
+
+const rawString = `
+  {"key1": "value1"} {"key2": "value2"} {"key3": "value3"}
+`;
+
+for await (const json of extractStream(rawString)) {
+  console.log(json);
+}
+// Output:
+// { key1: "value1" }
+// { key2: "value2" }
+// { key3: "value3" }
+```
+
 ### Extract with Limit
 
 You can also specify a limit to control the number of JSON objects or arrays extracted:
@@ -89,6 +117,14 @@ console.log(jsonObjects);
 
 **Returns**: An array of extracted JSON objects and arrays.
 
+---
+
+### `extractStream(rawString: string): AsyncGenerator<T>`
+
+- **rawString**: The string containing potential JSON objects or arrays.
+
+**Returns**: An `AsyncGenerator` that yields JSON objects and arrays as they are parsed.
+
 ## How It Works
 
 1. **Direct Parsing**: The `JsonExtractor` class first attempts to directly parse the entire string as JSON.
@@ -97,7 +133,7 @@ console.log(jsonObjects);
   
 3. **Parsing Substrings**: The class then attempts to parse substrings starting from each identified index, searching for valid JSON objects and arrays.
 
-4. **Extraction**: The method returns an array containing all successfully extracted JSON objects and arrays.
+4. **Streaming**: The `extractStream` method processes the string incrementally and yields JSON objects as they are parsed.
 
 ## Limitations
 

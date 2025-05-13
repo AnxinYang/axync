@@ -139,6 +139,26 @@ export class JsonExtractor {
 
     return this.tryParseSync(rawString, limit);
   }
+
+  /**
+   * Async streaming API for extracting JSON objects/arrays from a string.
+   * This is an async generator function that yields JSON objects/arrays as they are parsed.
+   */
+  async *extractStream<T = unknown>(rawString: string): AsyncGenerator<T> {
+    let remainingString = rawString;
+
+    while (remainingString.length > 0) {
+      const { parsed, updatedString } = this.processJsonCandidate<T>(remainingString);
+      remainingString = updatedString;
+
+      if (parsed !== undefined) {
+        yield parsed;
+      }
+
+      // Yield control back to the event loop
+      await Promise.resolve();
+    }
+  }
 }
 
 const jsonExtractor = new JsonExtractor();
@@ -156,3 +176,9 @@ export const extractJson = jsonExtractor.extract.bind(jsonExtractor);
  * up to the specified number of objects/arrays.
  */
 export const extractJsonSync = jsonExtractor.extractSync.bind(jsonExtractor);
+
+/**
+ * Async streaming API for extracting JSON objects/arrays from a string.
+ * This is an async generator function that yields JSON objects/arrays as they are parsed.
+ */
+export const extractStream = jsonExtractor.extractStream.bind(jsonExtractor);

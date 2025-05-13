@@ -325,4 +325,101 @@ describe("JsonExtractor", () => {
       expect(result).toEqual([{ key: "value with unicode: ❤" }]);
     });
   });
+
+  describe("extractStream", () => {
+    it("should yield multiple JSON objects/arrays from a string", async () => {
+      const rawString = `
+        {"key1": "value1"} 
+        {"key2": "value2"} 
+        [1, 2, 3]
+      `;
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([
+        { key1: "value1" },
+        { key2: "value2" },
+        [1, 2, 3],
+      ]);
+    });
+
+    it("should handle strings with no valid JSON and yield nothing", async () => {
+      const rawString = "just some text without JSON";
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([]);
+    });
+
+    it("should handle deeply nested JSON objects", async () => {
+      const rawString = `
+        {"key": {"nestedKey": {"deepKey": "deepValue"}}} 
+        [1, {"key": "value"}]
+      `;
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([
+        { key: { nestedKey: { deepKey: "deepValue" } } },
+        [1, { key: "value" }],
+      ]);
+    });
+
+    it("should handle invalid JSON gracefully and continue parsing", async () => {
+      const rawString = '{"key": "value"} invalid text [1, 2, 3]';
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([{ key: "value" }, [1, 2, 3]]);
+    });
+
+    it("should handle a mix of valid and invalid JSON", async () => {
+      const rawString = '{"key": "value"} {invalid} [1, 2, 3]';
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([{ key: "value" }, [1, 2, 3]]);
+    });
+
+    it("should handle strings with only whitespace and yield nothing", async () => {
+      const rawString = "   ";
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([]);
+    });
+
+    it("should handle strings with multiple valid JSON objects separated by whitespace", async () => {
+      const rawString = '{"key1": "value1"}   {"key2": "value2"}';
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([{ key1: "value1" }, { key2: "value2" }]);
+    });
+
+    it("should handle strings with escaped characters in JSON", async () => {
+      const rawString = '{"key": "value with \\"escaped quotes\\""}';
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([{ key: 'value with "escaped quotes"' }]);
+    });
+
+    it("should handle strings with JSON containing Unicode characters", async () => {
+      const rawString = '{"key": "value with unicode: \\u2764"}';
+      const result: unknown[] = [];
+      for await (const json of jsonExtractor.extractStream(rawString)) {
+        result.push(json);
+      }
+      expect(result).toEqual([{ key: "value with unicode: ❤" }]);
+    });
+  });
 });
