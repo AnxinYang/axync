@@ -1,27 +1,52 @@
 import * as cheerio from "cheerio";
 
+export interface ExtractorOptions {
+  /**
+   * Whether to remove elements with display: none or visibility: hidden.
+   * Default is true.
+   */
+  tryRemoveHiddenElement?: boolean;
+
+  /**
+   * Whether to include the href attribute in links.
+   * Default is true.
+   */
+  includeLinkHref?: boolean;
+}
+
 export class HtmlMainContentExtractor {
-  extract(rawHtmlString: string): string {
+  extract(rawHtmlString: string, options: ExtractorOptions = {}): string {
     if (!rawHtmlString) {
       return "";
-    }    // Load the HTML into Cheerio
+    } 
+    
+    const { tryRemoveHiddenElement = true, includeLinkHref = true } = options;
+    
+    // Load the HTML into Cheerio
     const $ = cheerio.load(rawHtmlString);
 
     // Remove scripts, styles, and other non-visible elements
-    $("script, style, noscript, link[rel='stylesheet'], meta, title, head").remove();
-    
-    // // Remove elements with display: none or visibility: hidden
-    // $("[style*='display:none'], [style*='display: none']").remove();
-    // $("[style*='visibility:hidden'], [style*='visibility: hidden']").remove();
-    
-    // // Remove common hidden elements by class/id patterns
-    // $(".hidden, .hide, .invisible, .sr-only, .screen-reader-only").remove();
-    // $("[hidden]").remove();
-    
+    $(
+      "script, style, noscript, link[rel='stylesheet'], meta, title, head"
+    ).remove();
+
+    if (tryRemoveHiddenElement) {
+      // Remove elements with display: none or visibility: hidden
+      $("[style*='display:none'], [style*='display: none']").remove();
+      $("[style*='visibility:hidden'], [style*='visibility: hidden']").remove();
+
+      // Remove common hidden elements by class/id patterns
+      $(".hidden, .hide, .invisible, .sr-only, .screen-reader-only").remove();
+      $("[hidden]").remove();
+    }
+
     // Remove comment nodes
-    $("*").contents().filter(function() {
-      return this.nodeType === 8; // Comment nodes
-    }).remove();
+    $("*")
+      .contents()
+      .filter(function () {
+        return this.nodeType === 8; // Comment nodes
+      })
+      .remove();
 
     // Find the body element
     const body = $("body");
@@ -40,7 +65,7 @@ export class HtmlMainContentExtractor {
     // Find the largest text node among the child nodes
     // This will help us identify the main content of the page
     let largestNode = childNodes.first();
-    let largestNodeSize = largestNode.text().trim().length;
+    let largestNodeSize = 0;
 
     childNodes.each((_, element) => {
       const childNode = $(element);
@@ -63,32 +88,44 @@ export class HtmlMainContentExtractor {
           return this.nodeType === 3; // Text node
         })
         .text()
-        .trim();      if (directTextContent) {
+        .trim();
+      if (directTextContent) {
         blankNodeCount = 0; // Reset blank node count
         // Convert to Markdown format based on tag type
         const markdownContent = this.convertToMarkdown(
           tagName,
           directTextContent,
-          node
+          node,
+          includeLinkHref
         );
         result += markdownContent + " ";
       } else if (blankNodeCount < 2) {
         result += "\n";
         blankNodeCount++;
       }
-    });    // If no descendant nodes found, use the largestNode itself
+    }); // If no descendant nodes found, use the largestNode itself
     if (result.trim() === "") {
       const tagName = largestNode.prop("tagName")?.toLowerCase() || "div";
       const textContent = largestNode.text().trim();
       if (textContent) {
-        const markdownContent = this.convertToMarkdown(tagName, textContent, largestNode);
-        result += markdownContent + "\n";
+        const markdownContent = this.convertToMarkdown(
+          tagName,
+          textContent,
+          largestNode,
+          includeLinkHref
+        );
+        result += markdownContent;
       }
     }
 
     return result.trim();
   }
-  private convertToMarkdown(tagName: string, textContent: string, node?: { attr: (name: string) => string | undefined }): string {
+  private convertToMarkdown(
+    tagName: string,
+    textContent: string,
+    node?: { attr: (name: string) => string | undefined },
+    includeLinkHref?: boolean
+  ): string {
     switch (tagName) {
       case "h1":
         return `\n# ${textContent}\n`;
@@ -103,7 +140,7 @@ export class HtmlMainContentExtractor {
       case "h6":
         return `\n###### ${textContent}\n`;
       case "p":
-        return textContent;
+        return `\n${textContent}\n`;
       case "strong":
       case "b":
         return `**${textContent}**`;
@@ -117,8 +154,8 @@ export class HtmlMainContentExtractor {
       case "li":
         return `\n- ${textContent}\n`;
       case "a":
-        if (node) {
-          const href = node.attr('href');
+        if (includeLinkHref && node) {
+          const href = node.attr("href");
           if (href) {
             return `[${textContent}](${href})`;
           }
