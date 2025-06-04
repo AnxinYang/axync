@@ -166,3 +166,7 @@ export class HtmlMainContentExtractor {
     }
   }
 }
+
+const htmlMainContentExtractor = new HtmlMainContentExtractor();
+
+export const extractHtmlMainContent = htmlMainContentExtractor.extract.bind(htmlMainContentExtractor);

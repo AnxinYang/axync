@@ -1,7 +1,7 @@
 /**
  * Options for memorizing function results.
  */
-interface MemorizeOptions {
+export interface MemorizeOptions {
   /**
    * Time-to-live in milliseconds for a cached result. 
    * If not provided, results will be cached indefinitely.
