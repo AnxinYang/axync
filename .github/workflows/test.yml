@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - run: npm run build --workspace=@axync/random
+      - run: npm run build
+
       - name: Run tests
         run: npm run test
