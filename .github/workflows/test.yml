@@ -13,21 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-      
-      - run: npm ci
-      - run: npm ci --workspace=@axync/random
+
+      - run: npm install
       - run: npm run build --workspace=@axync/random
-      - run: npm ci --workspace=@axync/extract-html-main-content
-      - run: npm run build --workspace=@axync/extract-html-main-content
-      - run: npm ci --workspace=@axync/extract-json
-      - run: npm run build --workspace=@axync/extract-json
-      - run: npm ci --workspace=@axync/memorize
-      - run: npm run build --workspace=@axync/memorize
-      - run: npm ci --workspace=@axync/pubsub
-      - run: npm run build --workspace=@axync/pubsub
-      - run: npm run test --workspaces
+      - run: npm run build
+      - run: npm run test
