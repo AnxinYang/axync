@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 1.0.6
+
+### Patch Changes
+
+- a3ed40a: Add readme and fix exports
+
 ## 1.0.5
 
 ### Patch Changes
