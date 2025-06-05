@@ -1,5 +1,11 @@
 # @axync/extract-json
 
+## 1.1.2
+
+### Patch Changes
+
+- a3ed40a: Add readme and fix exports
+
 ## 1.1.1
 
 ### Patch Changes
