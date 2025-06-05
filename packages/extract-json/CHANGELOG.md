@@ -1,5 +1,11 @@
 # @axync/extract-json
 
+## 1.1.3
+
+### Patch Changes
+
+- 97dbb12: Bump patch version
+
 ## 1.1.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @axync/random
 
+## 1.1.2
+
+### Patch Changes
+
+- 97dbb12: Bump patch version
+
 ## 1.1.1
 
 ### Patch Changes
