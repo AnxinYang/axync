@@ -1,5 +1,5 @@
 # @axync/extract-json
-![Test](https://github.com/AnxinYang/axync/actions/workflows/test.yml/badge.svg)
+![Test](https://github.com/AnxinYang/axync/actions/workflows/publish.yml/badge.svg)
 
 ## Overview
 

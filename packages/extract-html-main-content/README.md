@@ -1,5 +1,5 @@
 # @axync/extract-html-main-content
-![Test](https://github.com/AnxinYang/axync/actions/workflows/test.yml/badge.svg)
+![Test](https://github.com/AnxinYang/axync/actions/workflows/publish.yml/badge.svg)
 
 
 A powerful TypeScript library that intelligently extracts the main content from HTML documents and converts it to clean, readable Markdown format. Perfect for web scraping, content processing, LLM preprocessing, and text extraction from HTML pages.

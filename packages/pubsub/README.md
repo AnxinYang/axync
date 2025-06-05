@@ -1,4 +1,6 @@
 # @axync/pubsub
+![Test](https://github.com/AnxinYang/axync/actions/workflows/publish.yml/badge.svg)
+
 
 `@axync/pubsub` is a simple publish-subscribe (pub-sub) library designed for easy topic-based event handling. It allows you to publish data to specific topics and subscribe multiple handlers to those topics. The library also supports batch execution of handlers with configurable timing.
 

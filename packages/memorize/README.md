@@ -1,4 +1,6 @@
 # @axync/memorize
+![Test](https://github.com/AnxinYang/axync/actions/workflows/publish.yml/badge.svg)
+
 
 ## Overview
 
