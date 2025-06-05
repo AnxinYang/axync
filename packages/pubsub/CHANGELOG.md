@@ -1,5 +1,13 @@
 # @axync/pubsub
 
+## 1.0.2
+
+### Patch Changes
+
+- 97dbb12: Bump patch version
+- Updated dependencies [97dbb12]
+  - @axync/random@1.1.2
+
 ## 1.0.1
 
 ### Patch Changes

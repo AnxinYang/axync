@@ -1,5 +1,11 @@
 # @axync/extract-html-main-content
 
+## 0.1.2
+
+### Patch Changes
+
+- 97dbb12: Bump patch version
+
 ## 0.1.1
 
 ### Patch Changes

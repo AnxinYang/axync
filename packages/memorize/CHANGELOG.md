@@ -1,5 +1,11 @@
 # @axync/memorize
 
+## 1.0.7
+
+### Patch Changes
+
+- 97dbb12: Bump patch version
+
 ## 1.0.6
 
 ### Patch Changes
