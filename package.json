@@ -11,7 +11,7 @@
     "lint": "npm run lint --workspaces",
     "test": "npm run test --workspaces",
     "test:coverage": "npm run test:coverage --workspaces",
-    "release": "npm run clean && npm run build && changeset publish"
+    "release": "changeset publish"
   },
   "workspaces": [
     "packages/*"
